@@ -11,7 +11,6 @@ class CalculatorTest extends Specification {
     Calculator calculator
 
     def "Add"() {
-
         given: "a brand new calculator"
         calculator = new Calculator()
 
@@ -20,12 +19,10 @@ class CalculatorTest extends Specification {
 
         then:
         sum == 15
-
     }
 
     @Unroll("multiply: #expect arg1: #arg1 arg2 #arg2")
     def "multiply"() {
-
         given: "a brand new calculator"
         calculator = new Calculator()
 
@@ -40,7 +37,6 @@ class CalculatorTest extends Specification {
 
     @Unroll("subtrackt: #arg1 - #arg2 = #result")
     def "subtrackt"() {
-
         given: "a brand new calculator"
         calculator = new Calculator()
 
@@ -72,7 +68,6 @@ class CalculatorTest extends Specification {
 
     @Unroll("divide: #arg1 / #arg2 = #result")
     def "divide"() {
-
         given: "a brand new calculator"
         calculator = new Calculator()
 
@@ -87,11 +82,21 @@ class CalculatorTest extends Specification {
     }
 
     def "divide closeTo"() {
-
         given: "a brand new calculator"
         calculator = new Calculator()
 
-        expect:
+        expect: "that 1  / 3 is close to 0,33"
         that calculator.divide(1, 3), closeTo(0.33, 0.01)
+    }
+
+    def "divide closeTo same as above"() {
+        given: "a brand new calculator"
+        calculator = new Calculator()
+
+        when:
+        def result = calculator.divide(1, 3)
+
+        then: "Expect that 1  / 3 is close to 0,33"
+        that result, closeTo(0.33, 0.01)
     }
 }
