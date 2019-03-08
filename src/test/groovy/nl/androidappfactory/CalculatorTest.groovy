@@ -3,10 +3,12 @@ package nl.androidappfactory
 import spock.lang.FailsWith
 import spock.lang.Specification
 import spock.lang.Unroll
+import static spock.util.matcher.HamcrestSupport.that
+import static spock.util.matcher.HamcrestMatchers.closeTo
 
 class CalculatorTest extends Specification {
 
-    Calculator calculator;
+    Calculator calculator
 
     def "Add"() {
 
@@ -65,7 +67,7 @@ class CalculatorTest extends Specification {
         calculator = new Calculator()
 
         expect:
-        def result = calculator.divide(10, 0)
+        calculator.divide(10, 0)
     }
 
     @Unroll("divide: #arg1 / #arg2 = #result")
@@ -82,5 +84,14 @@ class CalculatorTest extends Specification {
         2.5    | 20   | 8
         1.25   | 10   | 8
         500    | 1000 | 2
+    }
+
+    def "divide closeTo"() {
+
+        given: "a brand new calculator"
+        calculator = new Calculator()
+
+        expect:
+        that calculator.divide(1, 3), closeTo(0.33, 0.01)
     }
 }
