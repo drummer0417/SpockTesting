@@ -1,16 +1,10 @@
 package nl.androidappfactory
 
-class GeenHelloStuffTest extends GroovyTestCase {
+import spock.lang.Specification
 
-    def GeenHelloStuff geenHelloStuff;
+class GeenHelloStuffTest extends Specification {
 
-    void setUp() {
-        geenHelloStuff = new GeenHelloStuff()
-    }
-
-    void tearDown() {
-
-    }
+    def GeenHelloStuff geenHelloStuff = new GeenHelloStuff();
 
     void testGetMessage() {
 
@@ -21,7 +15,11 @@ class GeenHelloStuffTest extends GroovyTestCase {
         def message = geenHelloStuff.getMessage(name)
 
         then: "'Halootjes Hans' will be returned"
-        assertEquals("Hello Hansje", message)
+        message == "Halootjes Hans"
+        "Halootjes Hansje" != message
 
+
+//        expect:
+//        "Halootjes Hans" == geenHelloStuff.getMessage(name)
     }
 }
