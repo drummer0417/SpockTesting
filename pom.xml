@@ -20,8 +20,7 @@
         <junit5.version>5.2.0</junit5.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.site.plugin.version>3.7.1</maven.site.plugin.version>
-        <spock.version>1.2-groovy-2.5</spock.version>
+        <spock.version>1.3-groovy-2.5</spock.version>
         <surefire.version>2.22.0</surefire.version>
 
     </properties>
@@ -39,7 +38,11 @@
             <version>${spock.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.10</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-surefire-provider</artifactId>
@@ -132,12 +135,4 @@
         </pluginRepository>
     </pluginRepositories>
 
-    <!--<reporting>-->
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<artifactId>maven-surefire-report-plugin</artifactId>-->
-                <!--<version>${surefire.version}</version>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</reporting>-->
 </project>

@@ -62,8 +62,10 @@ class CalculatorTest extends Specification {
         given: "a calculator"
         calculator = new Calculator()
 
-        expect:
+        when:
         calculator.divide(10, 0)
+
+        then: "an exception is thrown"
     }
 
     @Unroll("divide: #arg1 / #arg2 = #result")
