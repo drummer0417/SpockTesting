@@ -45,7 +45,7 @@ class OrderTest extends Specification {
         when: "inventory is removed from warehous"
         warehouse.remove("Laptop", 50)
 
-        then: "a message is posted"
+        then: "an async message is posted"
         1 * eventBus.post(EventBus.ASYNC,{
             ((Order)(it)).article == "Laptop"
             ((Order)(it)).amount == 50
