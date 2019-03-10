@@ -8,7 +8,7 @@ class OrderTest extends Specification {
 
         given: "an order and a warehouse"
         def order = new Order("Laptop", 10)
-        Warehouse warehouse = Mock();
+        Warehouse warehouse = Mock()
 
         when: "an order is filled"
         warehouse.hasInventory("Laptop", 10) >> true
@@ -25,7 +25,7 @@ class OrderTest extends Specification {
 
         given: "an order and a warehouse"
         def order = new Order("Laptop", 10)
-        Warehouse warehouse = Mock();
+        Warehouse warehouse = Mock()
 
         when: "an order is filled"
         warehouse.hasInventory("Laptop", 10) >> false
@@ -33,7 +33,7 @@ class OrderTest extends Specification {
 
         then: "order should not be filled and inventory should not be removed from warehous"
         !order.filled()
-        0 * warehouse.remove(_, _)
+        0 * warehouse.remove(_,_)
     }
 
     def "Event message is posted when article is removed from warehouse"(){
