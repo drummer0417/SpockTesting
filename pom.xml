@@ -39,11 +39,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.2.10</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-surefire-provider</artifactId>
             <version>${junit.platform.version}</version>
@@ -60,7 +55,11 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit5.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.10</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -106,6 +105,7 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
+
                 <dependencies>
                     <dependency>
                         <groupId>org.junit.platform</groupId>
@@ -114,10 +114,19 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!--<plugin>-->
-                <!--<artifactId>maven-site-plugin</artifactId>-->
-                <!--<version>${maven.site.plugin.version}</version>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -134,5 +143,4 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
 </project>
