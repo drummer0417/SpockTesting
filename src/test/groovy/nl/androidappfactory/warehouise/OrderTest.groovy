@@ -4,7 +4,7 @@ import spock.lang.Specification
 
 class OrderTest extends Specification {
 
-    def "Fill an order if there's enough eventory"() {
+    def "Fill an order if there's enough iventory"() {
 
         given: "an order and a warehouse"
         def order = new Order("Laptop", 10)
@@ -21,7 +21,7 @@ class OrderTest extends Specification {
 //      (1..4) * warehouse.remove("Laptop", 10)........ called 1, 2, 3 or 4 times
     }
 
-    def "Don't fill an order if there's no eventory"() {
+    def "Don't fill an order if there's no iventory"() {
 
         given: "an order and a warehouse"
         def order = new Order("Laptop", 10)
