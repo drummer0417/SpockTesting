@@ -25,8 +25,8 @@ class MemberServiceSpec extends Specification {
 
     //FailsWith(IllegalArgumentException)
     def "Add already existing member"() {
-        given: "a new (nonexisting) member"
-        def newMember = new Member(id: 1, firstName: "Hans")
+        given: "an existing member"
+        def existingMember = new Member(id: 1, firstName: "Hans")
 
         and: "a service and a repo"
         def membersRepository = Mock(MembersRepository)
@@ -34,9 +34,9 @@ class MemberServiceSpec extends Specification {
 
         when: "add member"
         membersRepository.exists(1) >> true
-        def addedMember = memberService.addMember(newMember)
+        memberService.addMember(existingMember)
 
-        then: "member is added"
+        then: "Exception is thrown"
         IllegalArgumentException e = thrown()
         e.getMessage() == "Member already exists"
     }
