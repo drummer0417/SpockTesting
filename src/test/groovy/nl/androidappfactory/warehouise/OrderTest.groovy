@@ -1,5 +1,6 @@
 package nl.androidappfactory.warehouise
 
+import spock.lang.Shared
 import spock.lang.Specification
 
 class OrderTest extends Specification {
@@ -8,7 +9,8 @@ class OrderTest extends Specification {
 
         given: "an order and a warehouse"
         def order = new Order("Laptop", 10)
-        Warehouse warehouse = Mock()
+//      Warehouse warehouse = Mock() // or like below
+        def warehouse = Mock(Warehouse)
 
         when: "an order is filled"
         warehouse.hasInventory("Laptop", 10) >> true
@@ -33,10 +35,10 @@ class OrderTest extends Specification {
 
         then: "order should not be filled and inventory should not be removed from warehous"
         !order.filled()
-        0 * warehouse.remove(_,_)
+        0 * warehouse.remove(_, _)
     }
 
-    def "Event message is posted when article is removed from warehouse"(){
+    def "Event message is posted when article is removed from warehouse"() {
 
         given: "a warehouse with event bus"
         EventBus eventBus = Mock()
@@ -46,9 +48,9 @@ class OrderTest extends Specification {
         warehouse.remove("Laptop", 50)
 
         then: "an async message is posted"
-        1 * eventBus.post(EventBus.ASYNC,{
-            ((Order)(it)).article == "Laptop"
-            ((Order)(it)).amount == 50
+        1 * eventBus.post(EventBus.ASYNC, {
+            ((Order) (it)).article == "Laptop"
+            ((Order) (it)).amount == 50
         })
     }
 }
